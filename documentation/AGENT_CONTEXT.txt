@@ -1,0 +1,168 @@
+================================================================================
+AI AGENT CONTEXT — airplane_onboarding_page (marketing / landing site)
+================================================================================
+Last updated: 2026-04-10 (session bootstrap)
+
+PURPOSE
+-------
+Single-page marketing experience for a small company disposing of a large
+inherited aviation-parts warehouse (~8M parts, approximate). The site should
+feel premium, trustworthy, and direct for procurement-minded visitors
+(operators, MROs, distributors, brokers).
+
+BRAND / PLACEHOLDER NAMING
+--------------------------
+- Public-facing name in UI: "AeroVault Supply" (placeholder — replace with
+  final legal / DBA name, logo, and domain).
+- Tone: professional, concise, aviation-industry appropriate; avoid hype.
+
+TECH STACK (LOCK THIS IN UNLESS PRODUCT OWNER CHANGES IT)
+--------------------------------------------------------
+- React 19 + TypeScript
+- Vite (build + dev server)
+- Tailwind CSS v4 via @tailwindcss/vite
+- shadcn/ui patterns (New York style): components live under src/components/ui
+- react-router-dom for lightweight routing
+- Vitest + Testing Library + jsdom for unit / component tests
+- Lucide icons (dependency present; add icons only when needed)
+
+PROJECT STRUCTURE (HIGH LEVEL)
+------------------------------
+- src/App.tsx — BrowserRouter, routes
+- src/pages/HomePage.tsx — Main landing (warehouse hero + scroll content)
+- src/pages/PartsPlaceholderPage.tsx — /parts until storefront exists
+- src/components/SiteHeader.tsx — Nav
+- src/components/EmailLeadForm.tsx — Lead capture
+- src/lib/site.ts — Env-driven URLs / contact email
+- src/index.css — Tailwind entry + design tokens (OKLCH theme)
+- components.json — shadcn CLI metadata (run shadcn locally to add components)
+- public/favicon.svg — Replace with real brand mark when ready
+
+ROUTES
+------
+- /           Home (marketing)
+- /parts      "Catalog coming soon" + mailto owner
+- *           Redirects to /
+
+ENVIRONMENT VARIABLES (VITE_*)
+------------------------------
+Copy .env.example → .env locally (never commit .env).
+
+- VITE_CONTACT_EMAIL — Shown in mailto links and footer-adjacent copy. REQUIRED
+  for production credibility.
+- VITE_HERO_IMAGE_URL — Optional. Defaults to a stock warehouse photo URL
+  for first-run demo. For production, prefer a hosted asset you own:
+  e.g. /warehouse.jpg in public/ or your CDN URL.
+- VITE_LEAD_FORM_ENDPOINT — Optional. If set, EmailLeadForm POSTs JSON
+  { email, name?, source: "landing" } to this URL. If unset, submit uses
+  mailto fallback to VITE_CONTACT_EMAIL.
+
+LEAD CAPTURE NOTES
+------------------
+- Current implementation is frontend-only. For real lead storage choose ONE:
+  - Formspree, Basin, Getform, or similar form endpoint (set
+    VITE_LEAD_FORM_ENDPOINT), OR
+  - A tiny serverless function (Cloudflare Worker, Vercel serverless) writing
+    to email, Airtable, Google Sheet, or CRM.
+- Add privacy copy / consent checkbox if you collect emails in regulated
+  regions (GDPR, CAN-SPAM, etc.) — legal review recommended.
+
+DESIGN INTENT
+-------------
+- Full-viewport warehouse photography as fixed background (bg-fixed) with a
+  dark gradient scrim so typography stays legible.
+- Foreground: glassy panels (bg-black/35–45, backdrop-blur, white/10 borders).
+- Typography: Instrument Sans (display), DM Sans (body) — loaded in index.html.
+- Default theme: dark (html class="dark" in index.html).
+
+CONTENT FACTS TO PRESERVE
+-------------------------
+- ~8 million parts (approximate; keep wording honest if the number changes).
+- Warehouse inheritance narrative; owner-led; catalog / storefront separate
+  app later.
+- Parts page must stay honest: inventory in progress, email owner for now.
+
+COMMANDS (LOCAL)
+----------------
+npm install
+npm run dev       — dev server
+npm run build     — production bundle
+npm run preview   — serve build
+npm run test      — vitest watch
+npm run test:run  — vitest single run
+npm run lint      — eslint
+
+ADDING SHADCN COMPONENTS
+------------------------
+With Node installed locally:
+npx shadcn@latest add <component>
+
+SESSION TODO LIST (ITERATE AT END OF EACH SESSION)
+--------------------------------------------------
+[ ] Replace placeholder brand "AeroVault Supply" with final name + logo SVG.
+[ ] Set VITE_CONTACT_EMAIL (and optional VITE_LEAD_FORM_ENDPOINT) in production.
+[ ] Swap hero image: add public/warehouse.jpg or set VITE_HERO_IMAGE_URL to an owned, optimized asset (WebP/AVIF on CDN ideal).
+[ ] Legal: privacy policy + cookie stance if analytics or forms store PII.
+[ ] Connect /parts CTA to real storefront when the separate app launches.
+[ ] SEO: finalize meta title/description per page; add Open Graph + Twitter
+    cards; consider react-helmet-async or Vite plugin for head management.
+[ ] Analytics: Plausible / Fathom / GA4 — pick based on privacy preference.
+[ ] Performance: image CDN, lazy routes if the site grows, Lighthouse budget.
+[ ] a11y pass: focus states, contrast on glass panels, reduced-motion.
+
+Session log:
+- 2026-04-10: Initial Vite + React + TS + Tailwind v4 + shadcn-style UI;
+  Home + /parts placeholder; EmailLeadForm (mailto or POST endpoint); docs
+  folder created. Run npm install / npm run build on your machine (Node
+  required).
+
+TESTING STRATEGY (TYPICAL FOR THIS SIZE)
+----------------------------------------
+This is a small marketing site: keep tests lean and high-value.
+
+1) Unit tests (Vitest)
+   - Pure helpers (e.g. src/lib/site.ts) and formatting utilities.
+   - Cheap to run; no DOM required beyond simple cases.
+
+2) Component tests (Vitest + Testing Library)
+   - Forms: validation messages, disabled loading state, successful POST handler (mock fetch).
+   - Router pages: smoke-render with MemoryRouter.
+
+3) E2E (optional, add if navigation/forms become complex)
+   - Playwright: one happy path (load home → submit interest) and one /parts
+     flow. Run in CI on PRs.
+
+4) Visual regression (optional)
+   - Chromatic / Percy if marketing stakes justify pixel-perfect reviews.
+
+Skip: heavy integration tests against real third-party form APIs in CI; mock
+network instead.
+
+RECOMMENDED ADDITIONAL LIBRARIES (NOT YET INSTALLED)
+----------------------------------------------------
+Evaluate based on need; do not add speculatively.
+
+- @tanstack/react-query — if you add real API calls for inventory teasers.
+- zod + react-hook-form — if forms grow beyond one email capture field.
+- react-helmet-async — per-route meta tags for SEO/social.
+- @vercel/og or static OG images — share cards for LinkedIn / Slack.
+- framer-motion — only if you add motion; respect prefers-reduced-motion.
+- vite-plugin-sitemap — when domain and routes are stable.
+
+SECURITY / OPS
+--------------
+- Never commit secrets; use env vars in hosting provider.
+- If using a form POST endpoint, add rate limiting / CAPTCHA if spam appears.
+- Set security headers (CSP, HSTS) at the hosting layer (Netlify, Vercel, etc.).
+
+OPEN QUESTIONS FOR PRODUCT OWNER
+--------------------------------
+- Final company legal name, domain, and brand colors.
+- Exact part count or approved range wording for compliance.
+- Target buyer personas (civil vs defense vs GA) — may adjust copy.
+- Countries / export compliance messaging if selling internationally.
+
+================================================================================
+END OF CONTEXT FILE — Update "Last updated", SESSION TODO, and OPEN QUESTIONS
+at the end of each working session.
+================================================================================
