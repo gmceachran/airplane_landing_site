@@ -91,6 +91,8 @@ npm run preview   — serve build
 npm run test      — vitest watch
 npm run test:run  — vitest single run
 npm run lint      — eslint
+npm run format    — prettier --write
+npm run format:check — prettier --check (CI)
 
 ADDING SHADCN COMPONENTS
 ------------------------

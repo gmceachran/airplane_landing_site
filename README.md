@@ -10,6 +10,8 @@ Marketing landing site for a small aviation-parts warehouse disposition: a scrol
 - **shadcn/ui**-style components (`src/components/ui`, [components.json](components.json))
 - **React Router** for `/` and `/parts`
 - **Vitest** + **Testing Library** for tests
+- **Prettier** + **prettier-plugin-tailwindcss** (formatting; Tailwind class order uses [prettier.config.mjs](prettier.config.mjs) + `src/index.css`)
+- **eslint-config-prettier** so ESLint does not fight Prettier
 
 ## Prerequisites
 
@@ -62,6 +64,8 @@ npm run preview
 | `npm run build` | Typecheck + Vite production build |
 | `npm run preview` | Serve `dist/` |
 | `npm run lint` | ESLint |
+| `npm run format` | Prettier — write |
+| `npm run format:check` | Prettier — check only (CI) |
 | `npm run test` | Vitest (watch mode) |
 | `npm run test:run` | Vitest single run (CI-friendly) |
 
