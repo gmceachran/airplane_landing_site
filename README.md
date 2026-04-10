@@ -15,8 +15,8 @@ Marketing landing site for a small aviation-parts warehouse disposition: a scrol
 
 ## Prerequisites
 
-- **Node.js** 20+ (LTS recommended)
-- **npm** (or use `pnpm` / `yarn` if you prefer; lockfile is not committed by default)
+- **Node.js** 20+ (LTS recommended; current Homebrew installs such as Node 25 also work)
+- **npm** (or `pnpm` / `yarn` if you prefer). This repo uses **`package-lock.json`** — commit it for reproducible installs
 
 ## Getting started
 

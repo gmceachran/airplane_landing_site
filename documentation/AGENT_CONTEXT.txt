@@ -1,7 +1,7 @@
 ================================================================================
 AI AGENT CONTEXT — airplane_onboarding_page (marketing / landing site)
 ================================================================================
-Last updated: 2026-04-10 (session bootstrap)
+Last updated: 2026-04-10 (stack + docs sync)
 
 PURPOSE
 -------
@@ -24,6 +24,7 @@ TECH STACK (LOCK THIS IN UNLESS PRODUCT OWNER CHANGES IT)
 - shadcn/ui patterns (New York style): components live under src/components/ui
 - react-router-dom for lightweight routing
 - Vitest + Testing Library + jsdom for unit / component tests
+- Prettier + prettier-plugin-tailwindcss + eslint-config-prettier (formatting; see prettier.config.mjs)
 - Lucide icons (dependency present; add icons only when needed)
 
 PROJECT STRUCTURE (HIGH LEVEL)
@@ -35,6 +36,7 @@ PROJECT STRUCTURE (HIGH LEVEL)
 - src/components/EmailLeadForm.tsx — Lead capture
 - src/lib/site.ts — Env-driven URLs / contact email
 - src/index.css — Tailwind entry + design tokens (OKLCH theme)
+- prettier.config.mjs — Prettier + Tailwind class sort (tailwindStylesheet → src/index.css)
 - components.json — shadcn CLI metadata (run shadcn locally to add components)
 - public/favicon.svg — Replace with real brand mark when ready
 
@@ -115,8 +117,9 @@ SESSION TODO LIST (ITERATE AT END OF EACH SESSION)
 Session log:
 - 2026-04-10: Initial Vite + React + TS + Tailwind v4 + shadcn-style UI;
   Home + /parts placeholder; EmailLeadForm (mailto or POST endpoint); docs
-  folder created. Run npm install / npm run build on your machine (Node
-  required).
+  folder created.
+- 2026-04-10: Prettier + Tailwind plugin + eslint-config-prettier; README +
+  this file updated. package-lock.json present — commit for reproducible CI.
 
 TESTING STRATEGY (TYPICAL FOR THIS SIZE)
 ----------------------------------------
