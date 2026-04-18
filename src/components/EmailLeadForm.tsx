@@ -79,13 +79,13 @@ export function EmailLeadForm() {
   return (
     <Card
       id="contact"
-      className="border-white/15 bg-black/40 text-card-foreground shadow-none backdrop-blur-md"
+      className="border-sky-200/70 bg-white/60 text-card-foreground shadow-sm shadow-sky-950/5 backdrop-blur-md"
     >
       <CardHeader>
-        <CardTitle className="font-display text-xl tracking-tight">
+        <CardTitle className="font-display text-xl tracking-tight text-slate-900">
           Get availability updates
         </CardTitle>
-        <CardDescription className="text-zinc-300">
+        <CardDescription className="text-slate-600">
           Share your email for inventory announcements and buyer outreach. No
           spam — just relevant updates as SKUs are cataloged.
         </CardDescription>
@@ -103,7 +103,7 @@ export function EmailLeadForm() {
               value={email}
               onChange={(ev) => setEmail(ev.target.value)}
               required
-              className="border-white/20 bg-black/30"
+              className="border-input bg-background/90"
             />
           </div>
           <div className="grid gap-2">
@@ -115,7 +115,7 @@ export function EmailLeadForm() {
               placeholder="Jordan Lee"
               value={name}
               onChange={(ev) => setName(ev.target.value)}
-              className="border-white/20 bg-black/30"
+              className="border-input bg-background/90"
             />
           </div>
           <Button
@@ -129,20 +129,20 @@ export function EmailLeadForm() {
             <p
               className={
                 status === "error"
-                  ? "text-sm text-red-300"
+                  ? "text-sm text-red-600"
                   : status === "success"
-                    ? "text-sm text-emerald-300"
-                    : "text-sm text-zinc-300"
+                    ? "text-sm text-emerald-700"
+                    : "text-sm text-slate-600"
               }
               role="status"
             >
               {message}
             </p>
           ) : null}
-          <p className="text-xs text-zinc-400">
+          <p className="text-xs text-slate-500">
             Prefer email directly? Reach the owner at{" "}
             <a
-              className="underline underline-offset-4 hover:text-zinc-200"
+              className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
               href={`mailto:${getContactEmail()}`}
             >
               {getContactEmail()}

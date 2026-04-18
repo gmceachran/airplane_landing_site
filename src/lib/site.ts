@@ -1,5 +1,10 @@
+/**
+ * Default stock hero (warehouse shelves). Must return HTTP 200 — Unsplash IDs
+ * can 404 if removed; verify with curl -sI before changing. HeroBackdrop
+ * filters keep it visually softer.
+ */
 const DEFAULT_HERO =
-  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=80";
+  "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=2400&q=82";
 
 export function getHeroImageUrl(): string {
   const fromEnv = import.meta.env.VITE_HERO_IMAGE_URL;

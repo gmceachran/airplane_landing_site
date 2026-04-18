@@ -5,17 +5,17 @@ import { cn } from "@/lib/utils";
 
 const navClass = ({ isActive }: { isActive: boolean }) =>
   cn(
-    "text-sm font-medium transition-colors hover:text-foreground",
-    isActive ? "text-foreground" : "text-muted-foreground",
+    "text-sm font-medium transition-colors hover:text-primary",
+    isActive ? "text-primary" : "text-muted-foreground",
   );
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-20 border-b border-white/10 bg-black/25 backdrop-blur-md">
+    <header className="sticky top-0 z-20 border-b border-sky-200/65 bg-white/55 backdrop-blur-md">
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           to="/"
-          className="font-display text-sm font-semibold tracking-tight text-foreground"
+          className="font-display text-sm font-semibold tracking-tight text-slate-900"
         >
           AeroVault Supply
         </Link>
