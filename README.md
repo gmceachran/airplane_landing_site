@@ -37,6 +37,7 @@ cp .env.example .env
 | `VITE_CONTACT_EMAIL` | Yes for production | Email used in `mailto:` links and contact copy. |
 | `VITE_HERO_IMAGE_URL` | No | URL or path (e.g. `/warehouse.jpg` in `public/`). Defaults to a demo stock image if unset. |
 | `VITE_LEAD_FORM_ENDPOINT` | No | If set, the interest form `POST`s JSON `{ email, name?, source: "landing" }` here. If unset, submit opens a mailto draft. |
+| `VITE_BASE_PATH` | No | Path prefix for GitHub **project** Pages (e.g. `/my-repo/`). Omit for local dev and for a site at the domain root. CI sets this in [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml). |
 
 Start the dev server:
 
@@ -53,6 +54,22 @@ npm run build
 Preview the production build locally:
 
 ```bash
+npm run preview
+```
+
+### GitHub Pages
+
+The workflow [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) builds on pushes to `main`, copies `index.html` to `404.html` (so client-side routes like `/parts` work on refresh), and deploys `dist/` via GitHub Actions Pages.
+
+1. In the repository: **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
+2. Push to `main` (or run the workflow manually). The site will be at `https://<your-username>.github.io/<repository-name>/` for a normal project repo.
+3. For a **user** site (`<username>.github.io` with the site at the domain root), edit the workflow’s build step and set `VITE_BASE_PATH` to `/` instead of `/${{ github.event.repository.name }}/`.
+4. Set **`VITE_CONTACT_EMAIL`** (and any other `VITE_*` vars) as **repository secrets** or **environment variables** for the workflow when you are ready—either inject them in the workflow `env` for the build step or use a hosting-specific mechanism.
+
+To preview a project-site build locally:
+
+```bash
+VITE_BASE_PATH=/your-repo-name/ npm run build
 npm run preview
 ```
 

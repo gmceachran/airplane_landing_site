@@ -26,7 +26,7 @@ export function SiteHeader() {
           <NavLink to="/parts" className={navClass}>
             Parts catalog
           </NavLink>
-          <a href="/#contact" className={navClass({ isActive: false })}>
+          <a href={`${import.meta.env.BASE_URL}#contact`} className={navClass({ isActive: false })}>
             Contact
           </a>
         </nav>
