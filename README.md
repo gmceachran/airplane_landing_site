@@ -66,6 +66,8 @@ The workflow [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages
 3. For a **user** site (`<username>.github.io` with the site at the domain root), edit the workflow’s build step and set `VITE_BASE_PATH` to `/` instead of `/${{ github.event.repository.name }}/`.
 4. Set **`VITE_CONTACT_EMAIL`** (and any other `VITE_*` vars) as **repository secrets** or **environment variables** for the workflow when you are ready—either inject them in the workflow `env` for the build step or use a hosting-specific mechanism.
 
+If the **build** job passes but **deploy** fails quickly, check that **Settings → Pages → Source** is **GitHub Actions** (not “Deploy from a branch”). The deploy job also needs **`pages: write`** and **`id-token: write`** on the token (the workflow sets this on the deploy job). If the **`github-pages`** environment has **required reviewers**, open the workflow run and **approve** the deployment.
+
 To preview a project-site build locally:
 
 ```bash
