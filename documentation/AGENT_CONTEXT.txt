@@ -1,7 +1,7 @@
 ================================================================================
 AI AGENT CONTEXT — airplane_onboarding_page (marketing / landing site)
 ================================================================================
-Last updated: 2026-04-10 (stack + docs sync)
+Last updated: 2026-04-18 (brand + contact sync)
 
 PURPOSE
 -------
@@ -12,8 +12,8 @@ feel premium, trustworthy, and direct for procurement-minded visitors
 
 BRAND / PLACEHOLDER NAMING
 --------------------------
-- Public-facing name in UI: "AeroVault Supply" (placeholder — replace with
-  final legal / DBA name, logo, and domain).
+- Public-facing name in UI: "Roswell Aerospace Solutions" (logo SVG + domain
+  TBD).
 - Tone: professional, concise, aviation-industry appropriate; avoid hype.
 
 TECH STACK (LOCK THIS IN UNLESS PRODUCT OWNER CHANGES IT)
@@ -103,8 +103,9 @@ npx shadcn@latest add <component>
 
 SESSION TODO LIST (ITERATE AT END OF EACH SESSION)
 --------------------------------------------------
-[ ] Replace placeholder brand "AeroVault Supply" with final name + logo SVG.
-[ ] Set VITE_CONTACT_EMAIL (and optional VITE_LEAD_FORM_ENDPOINT) in production.
+[ ] Add logo SVG + favicon when brand assets are ready.
+[ ] Set VITE_CONTACT_EMAIL in GitHub Actions if overriding the baked-in default;
+  optional VITE_LEAD_FORM_ENDPOINT for form POST.
 [ ] Swap hero image: add public/warehouse.jpg or set VITE_HERO_IMAGE_URL to an owned, optimized asset (WebP/AVIF on CDN ideal).
 [ ] Legal: privacy policy + cookie stance if analytics or forms store PII.
 [ ] Connect /parts CTA to real storefront when the separate app launches.
@@ -115,6 +116,8 @@ SESSION TODO LIST (ITERATE AT END OF EACH SESSION)
 [ ] a11y pass: focus states, contrast on glass panels, reduced-motion.
 
 Session log:
+- 2026-04-18: Brand "Roswell Aerospace Solutions"; default contact
+  cdproctor23@gmail.com in site.ts; GitHub Pages deploy workflow.
 - 2026-04-10: Initial Vite + React + TS + Tailwind v4 + shadcn-style UI;
   Home + /parts placeholder; EmailLeadForm (mailto or POST endpoint); docs
   folder created.

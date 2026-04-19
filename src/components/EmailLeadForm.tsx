@@ -58,7 +58,9 @@ export function EmailLeadForm() {
       return;
     }
 
-    const subject = encodeURIComponent("Interest in aviation parts inventory");
+    const subject = encodeURIComponent(
+      "Interest in aviation parts — Roswell Aerospace Solutions",
+    );
     const body = encodeURIComponent(
       [
         `Email: ${trimmed}`,

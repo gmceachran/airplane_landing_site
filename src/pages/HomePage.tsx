@@ -100,8 +100,8 @@ export function HomePage() {
 
       <footer className="border-t border-sky-200/70 bg-white/50 py-10 text-center text-sm text-slate-600 backdrop-blur-md">
         <p>
-          © {new Date().getFullYear()} AeroVault Supply · Aviation warehouse
-          disposition
+          © {new Date().getFullYear()} Roswell Aerospace Solutions · Aviation
+          warehouse disposition
         </p>
       </footer>
     </div>

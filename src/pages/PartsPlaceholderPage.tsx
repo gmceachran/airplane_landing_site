@@ -42,7 +42,7 @@ export function PartsPlaceholderPage() {
             <div className="flex flex-wrap gap-3">
               <Button asChild>
                 <a
-                  href={`mailto:${owner}?subject=${encodeURIComponent("Parts inquiry — AeroVault")}`}
+                  href={`mailto:${owner}?subject=${encodeURIComponent("Parts inquiry — Roswell Aerospace Solutions")}`}
                 >
                   Email {owner}
                 </a>

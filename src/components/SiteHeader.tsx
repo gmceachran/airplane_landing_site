@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 
+import { BrandLogo } from "@/components/BrandLogo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -15,9 +16,10 @@ export function SiteHeader() {
       <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-4 px-4 sm:px-6">
         <Link
           to="/"
-          className="font-display text-sm font-semibold tracking-tight text-slate-900"
+          className="flex min-w-0 max-w-[65vw] items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:max-w-none"
         >
-          AeroVault Supply
+          <BrandLogo />
+          <span className="sr-only">Roswell Aerospace Solutions</span>
         </Link>
         <nav className="hidden items-center gap-6 sm:flex" aria-label="Main">
           <NavLink to="/" className={navClass} end>
