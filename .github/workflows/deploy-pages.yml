@@ -1,9 +1,13 @@
-# Build static site and deploy to GitHub Pages (project site:
-# https://<owner>.github.io/<repo>/).
+# Build static site and deploy to GitHub Pages.
 #
-# One-time repo setup: Settings → Pages → Build and deployment → Source: GitHub Actions.
-# User/org site (username.github.io repo with site at domain root): set VITE_BASE_PATH=/
-# in the Build step below instead of the repository name.
+# Current deployment target: custom domain (roswellaero.com), served at the
+# domain root. `public/CNAME` is committed so the domain survives every deploy.
+#
+# One-time repo setup: Settings → Pages → Build and deployment → Source: GitHub
+# Actions; add the custom domain in the same settings page.
+#
+# If you ever move back to https://<owner>.github.io/<repo>/, set
+# VITE_BASE_PATH=/<repo>/ in the Build step and remove public/CNAME.
 
 name: Deploy to GitHub Pages
 
@@ -35,8 +39,6 @@ jobs:
       - run: npm ci
 
       - name: Build
-        env:
-          VITE_BASE_PATH: /${{ github.event.repository.name }}/
         run: |
           npm run build
           cp dist/index.html dist/404.html

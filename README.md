@@ -61,12 +61,16 @@ npm run preview
 
 The workflow [.github/workflows/deploy-pages.yml](.github/workflows/deploy-pages.yml) builds on pushes to `main`, copies `index.html` to `404.html` (so client-side routes like `/parts` work on refresh), and deploys `dist/` via GitHub Actions Pages.
 
-1. In the repository: **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**.
-2. Push to `main` (or run the workflow manually). The site will be at `https://<your-username>.github.io/<repository-name>/` for a normal project repo.
-3. For a **user** site (`<username>.github.io` with the site at the domain root), edit the workflow’s build step and set `VITE_BASE_PATH` to `/` instead of `/${{ github.event.repository.name }}/`.
+Current target: the custom domain **roswellaero.com** served at the root. [`public/CNAME`](public/CNAME) is committed so every deploy preserves the domain binding.
+
+1. In the repository: **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions**, and set the **Custom domain** to `roswellaero.com`.
+2. Push to `main` (or run the workflow manually). The live site is at `https://roswellaero.com/`.
+3. If you ever move back to a project-page URL (`https://<user>.github.io/<repo>/`): delete `public/CNAME`, and set `VITE_BASE_PATH=/<repo>/` on the workflow's Build step.
 4. Set **`VITE_CONTACT_EMAIL`** (and any other `VITE_*` vars) as **repository secrets** or **environment variables** for the workflow when you are ready—either inject them in the workflow `env` for the build step or use a hosting-specific mechanism.
 
 If the **build** job passes but **deploy** fails quickly, check that **Settings → Pages → Source** is **GitHub Actions** (not “Deploy from a branch”). The deploy job also needs **`pages: write`** and **`id-token: write`** on the token (the workflow sets this on the deploy job). If the **`github-pages`** environment has **required reviewers**, open the workflow run and **approve** the deployment.
+
+If the site loads to a **blank page** after a deploy, it's almost always a base-path mismatch: open DevTools → Network and look for 404s on `/assets/…`. For custom-domain / apex hosting, `VITE_BASE_PATH` must be unset (or `/`). For a project-page URL, it must be `/<repo>/` with the trailing slash.
 
 To preview a project-site build locally:
 
