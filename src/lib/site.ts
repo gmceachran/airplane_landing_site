@@ -23,3 +23,41 @@ export function getLeadFormEndpoint(): string | undefined {
   if (v && v.trim().length > 0) return v.trim();
   return undefined;
 }
+
+/**
+ * Prefilled body for a "parts inquiry" mailto draft. Mailto bodies are plain
+ * text — pipes form a readable table in every major mail client. Keep the copy
+ * explicit so buyers know they can either attach a file or edit the table
+ * inline.
+ */
+export function buildPartsInquiryMailtoBody(): string {
+  return [
+    "Hi Roswell Aerospace Solutions,",
+    "",
+    "Please find my parts inquiry below.",
+    "Preferred: attach a parts list as CSV, XLSX, or PDF.",
+    "Otherwise, add rows to the table below and send.",
+    "",
+    "--- PARTS LIST ---",
+    "Part number | Qty | Condition | Notes",
+    "----------- | --- | --------- | -----",
+    "            |     |           |",
+    "            |     |           |",
+    "            |     |           |",
+    "",
+    "Additional context (timeline, certifications, AOG, etc.):",
+    "",
+    "",
+    "Thank you,",
+    "",
+  ].join("\n");
+}
+
+/** Returns a full `mailto:` URL for a parts inquiry with subject and body. */
+export function getPartsInquiryMailto(): string {
+  const subject = encodeURIComponent(
+    "Parts inquiry — Roswell Aerospace Solutions",
+  );
+  const body = encodeURIComponent(buildPartsInquiryMailtoBody());
+  return `mailto:${getContactEmail()}?subject=${subject}&body=${body}`;
+}

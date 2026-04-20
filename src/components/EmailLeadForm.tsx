@@ -59,14 +59,20 @@ export function EmailLeadForm() {
     }
 
     const subject = encodeURIComponent(
-      "Interest in aviation parts — Roswell Aerospace Solutions",
+      "Inquiry — Roswell Aerospace Solutions",
     );
     const body = encodeURIComponent(
       [
         `Email: ${trimmed}`,
         name.trim() ? `Name: ${name.trim()}` : null,
         "",
-        "I would like to learn more about availability and the upcoming catalog.",
+        "I'm interested in (check any that apply):",
+        "  [ ] Requesting a teardown bid",
+        "  [ ] Parts availability",
+        "  [ ] Joining the buyer interest list",
+        "",
+        "Details:",
+        "",
       ]
         .filter(Boolean)
         .join("\n"),
@@ -85,11 +91,11 @@ export function EmailLeadForm() {
     >
       <CardHeader>
         <CardTitle className="font-display text-xl tracking-tight text-slate-900">
-          Get availability updates
+          Contact Roswell Aerospace
         </CardTitle>
         <CardDescription className="text-slate-600">
-          Share your email for inventory announcements and buyer outreach. No
-          spam — just relevant updates as SKUs are cataloged.
+          Request a teardown bid, ask about parts availability, or join the
+          buyer interest list. No spam — we only send relevant updates.
         </CardDescription>
       </CardHeader>
       <CardContent>
