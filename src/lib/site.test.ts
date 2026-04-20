@@ -16,7 +16,7 @@ describe("site helpers", () => {
     vi.stubEnv("VITE_CONTACT_EMAIL", "");
     vi.resetModules();
     const { getContactEmail: getEmail } = await import("./site");
-    expect(getEmail()).toBe("cdproctor23@gmail.com");
+    expect(getEmail()).toBe("chaseproctor@roswellaero.com");
   });
 
   afterEach(() => {

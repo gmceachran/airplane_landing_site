@@ -116,8 +116,9 @@ SESSION TODO LIST (ITERATE AT END OF EACH SESSION)
 [ ] a11y pass: focus states, contrast on glass panels, reduced-motion.
 
 Session log:
-- 2026-04-18: Brand "Roswell Aerospace Solutions"; default contact
-  cdproctor23@gmail.com in site.ts; GitHub Pages deploy workflow.
+- 2026-04-19: Custom domain roswellaero.com live (public/CNAME committed,
+  VITE_BASE_PATH dropped from CI); default contact chaseproctor@roswellaero.com.
+- 2026-04-18: Brand "Roswell Aerospace Solutions"; GitHub Pages deploy workflow.
 - 2026-04-10: Initial Vite + React + TS + Tailwind v4 + shadcn-style UI;
   Home + /parts placeholder; EmailLeadForm (mailto or POST endpoint); docs
   folder created.

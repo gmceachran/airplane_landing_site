@@ -15,7 +15,7 @@ export function getHeroImageUrl(): string {
 export function getContactEmail(): string {
   const fromEnv = import.meta.env.VITE_CONTACT_EMAIL;
   if (fromEnv && fromEnv.trim().length > 0) return fromEnv.trim();
-  return "cdproctor23@gmail.com";
+  return "chaseproctor@roswellaero.com";
 }
 
 export function getLeadFormEndpoint(): string | undefined {
