@@ -1,7 +1,8 @@
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
 import { HomePage } from "@/pages/HomePage";
-import { PartsPlaceholderPage } from "@/pages/PartsPlaceholderPage";
+import { PartsSearchPage } from "@/pages/PartsSearchPage";
+import { PartDetailPage } from "@/pages/PartDetailPage";
 
 export default function App() {
   const basename =
@@ -13,7 +14,8 @@ export default function App() {
     <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/parts" element={<PartsPlaceholderPage />} />
+        <Route path="/parts" element={<PartsSearchPage />} />
+        <Route path="/parts/:id" element={<PartDetailPage />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </BrowserRouter>
