@@ -64,6 +64,11 @@ async function apiFetch<T>(path: string, init?: RequestInit): Promise<T> {
 }
 
 export const api = {
+  checkPart(partNumber: string): Promise<{ part_number: string; found: boolean }> {
+    const params = new URLSearchParams({ part_number: partNumber });
+    return apiFetch(`/api/v1/parts/check?${params}`);
+  },
+
   searchComponents(q: string): Promise<{ components: Component[] }> {
     const params = new URLSearchParams({ q });
     return apiFetch(`/api/v1/components?${params}`);
